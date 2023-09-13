@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mu Alpha Theta Teacher Help</title>
+        <link rel="stylesheet" href="styles.css">
+        <script src="script.js"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    </head>
+    <body>
+        <div id="content">
+            <h1 id="header">Made by Aidan Lai!</h1>
+            <div id="filters">
+                <div class="input-field col s12" style="margin: 0px" id="difficultyfilter">
+                    <select multiple id="difficulties">
+                      <option value="" disabled>Academic Level</option>
+                      <option value="Academic" selected>Academic</option>
+                      <option value="KAP" selected>KAP</option>
+                      <option value="AP" selected>AP</option>
+                    </select>
+                </div>
+
+                <div class="input-field col s12" style="margin: 0px" id="timefilter">
+                    <select multiple id="times">
+                      <option value="" disabled>Tutorial Times</option>
+                      <option value="Before School" selected>Before School</option>
+                      <option value="Enrichment" selected>Enrichment</option>
+                      <option value="Afterschool" selected>After School</option>
+                    </select>
+                </div>
+            </div>
+            <div id="recurring" class="tutorials">
+                <h1 class="subheader">Weekly Tutorials</h1>
+            </div>
+            <div id="onetime" class="tutorials">
+                <h1 class="subheader">One-time Tutorials</h1>
+            </div>
+        </div>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+    </body>
+</html>

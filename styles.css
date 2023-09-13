@@ -1,0 +1,72 @@
+html {
+    margin: 0;
+    width: 100%;
+}
+
+body {
+    margin: 0;
+    width: 100%;
+}
+
+#header {
+    margin: 0;
+    text-align: center;
+}
+
+#content {
+    display: flex;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    padding-top: 2vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    gap: 2vh;
+}
+
+.tutorials {
+    display: flex;
+    padding: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+    gap: 0;
+}
+
+#filters {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    flex-direction: row;
+    gap: 2vw;
+    justify-content: space-around;
+}
+
+.tutorialslot {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1vw;
+    align-items: center;
+    margin: 0;
+}
+
+.course {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    width: 25%;
+}
+
+.time {
+    display: flex;
+    justify-content: flex-end;
+    width: 25%;
+}
+
+.subheader {
+    font-size: min(3vw, 25px);
+    margin: 0vw 0vw 1vh 0vw;
+}
