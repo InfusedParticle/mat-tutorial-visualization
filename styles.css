@@ -51,13 +51,20 @@ body {
     padding: 1vw;
     align-items: center;
     margin: 0;
+    opacity: 1;
 }
+.tutorialslot:hover {
+    opacity: 0.8;
+}
+
 
 .course {
     display: flex;
     flex-direction: column;
     gap: 0px;
     width: 25%;
+    transition: 0.1;
+    opacity: 1;
 }
 
 .time {
