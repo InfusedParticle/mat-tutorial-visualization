@@ -57,7 +57,7 @@ function init() {
                 let teacher = document.createElement('div')
                 courseName.innerHTML = row[3].v;
                 teacher.innerHTML = `<b>${row[2].v}</b>`;
-                teacher.style.fontSize = "1.7vh"
+                teacher.classList.add('teacher')
                 course.appendChild(courseName)
                 course.appendChild(teacher)
             
@@ -88,7 +88,7 @@ function init() {
                 let teacher = document.createElement('div')
                 courseName.innerHTML = row[3].v;
                 teacher.innerHTML = `<b>${row[2].v}</b>`;
-                teacher.style.fontSize = "1.7vh"
+                teacher.classList.add('teacher')
                 course.appendChild(courseName)
                 course.appendChild(teacher)
             

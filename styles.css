@@ -53,6 +53,7 @@ body {
     margin: 0;
     opacity: 1;
 }
+
 .tutorialslot:hover {
     opacity: 0.8;
 }
@@ -76,4 +77,39 @@ body {
 .subheader {
     font-size: min(3vw, 25px);
     margin: 0vw 0vw 1vh 0vw;
+}
+
+.teacher {
+    font-size: 1.7vh;
+}
+
+@media only screen and (max-width: 1000px) {
+    #header {
+        font-size: 9vw;
+    }
+
+    #filters {
+        display: flex;
+        margin: 0;
+        padding: 0;
+        gap: 3vw;
+        justify-content: space-around;
+    }
+
+    .filter {
+        width: 30vw;
+    }
+
+    .teacher {
+        font-size: 2.2vw;
+    }
+
+    .subheader {
+        font-size: min(4vw, 40px);
+        margin: 0vw 0vw 1vh 0vw;
+    }
+
+    .tutorialslot {
+        font-size: 3vw;
+    }
 }
