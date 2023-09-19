@@ -63,7 +63,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 0px;
-    width: 25%;
+    width: 30%;
     transition: 0.1;
     opacity: 1;
 }
@@ -71,7 +71,7 @@ body {
 .time {
     display: flex;
     justify-content: flex-end;
-    width: 25%;
+    width: 30%;
 }
 
 .subheader {
