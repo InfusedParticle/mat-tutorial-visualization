@@ -110,6 +110,10 @@ function oneTimeTutorial(row) {
         date.innerHTML = row[10]['f']
     }
 
+    if(row[11] == null && row[10] == null) {
+        time.innerHTML = row[12].v
+    }
+
     d.appendChild(course);
     d.appendChild(date)
     d.appendChild(time);
@@ -149,7 +153,9 @@ function oneTimeTutorial(row) {
     } else {
         d.difficulty = 'Academic';
     }
-    let timeString = (row)
+    if(row[7] != null) {
+        let timeString = row[7].v;
+    }
     divs.push(d)
 }
 
@@ -213,3 +219,4 @@ function recurringTutorial(row) {
     }
     divs.push(d)
 }
+
