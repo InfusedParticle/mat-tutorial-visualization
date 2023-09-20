@@ -58,7 +58,7 @@ function init() {
         for(obj in jsData['table']['rows']) {
             let row = jsData['table']['rows'][obj]['c']
             console.log(row)
-            if(row[5]['v'].includes('specific')) {
+            if(row[4]['v'].includes('specific')) {
                 // one-time tutorials
                 oneTimeTutorial(row)
             }
@@ -74,8 +74,8 @@ function init() {
 function oneTimeTutorial(row) {
     // check if tutorial has already happened
     let past = false;
-    if(row[10] != null) {
-        let dateData = row[10].v.slice(5, -1).split(",")
+    if(row[9] != null) {
+        let dateData = row[9].v.slice(5, -1).split(",")
         let tutorialDate = new Date(parseInt(dateData[0]), parseInt(dateData[1]), parseInt(dateData[2]))
         let currentDate = new Date();
         if(tutorialDate < currentDate) {
@@ -91,7 +91,7 @@ function oneTimeTutorial(row) {
     let courseName = document.createElement('div')
     let teacher = document.createElement('div')
     courseName.innerHTML = row[3].v;
-    teacher.innerHTML = `<b>${row[2].v} - ${row[4].v}</b>`;
+    teacher.innerHTML = `<b>${row[2].v} - ${row[13].v}</b>`;
     teacher.classList.add('teacher')
     course.appendChild(courseName)
     course.appendChild(teacher)
@@ -99,19 +99,19 @@ function oneTimeTutorial(row) {
     course.classList.add("course")
     
     let time = document.createElement("div")
-    if(row[11] != null) {
-        let tempTime = row[11]['f']
+    if(row[10] != null) {
+        let tempTime = row[10]['f']
         time.innerHTML = tempTime.substring(0, tempTime.lastIndexOf(':')) + tempTime.substring(tempTime.lastIndexOf(' '))
     }
     time.classList.add('time')
 
     let date = document.createElement("div")
-    if(row[10] != null) {
-        date.innerHTML = row[10]['f']
+    if(row[9] != null) {
+        date.innerHTML = row[9]['f']
     }
 
-    if(row[11] == null && row[10] == null) {
-        time.innerHTML = row[12].v
+    if(row[10] == null && row[9] == null && row[11] != null) {
+        time.innerHTML = row[11].v
     }
 
     d.appendChild(course);
@@ -133,13 +133,13 @@ function oneTimeTutorial(row) {
 
         // one-time modal content
         let dateString = ``
-        if(row[10] != null) {
-            dateString = `${row[10]['f']} at ${time.innerHTML}`
+        if(row[9] != null) {
+            dateString = `${row[9]['f']} at ${time.innerHTML}`
         } else {
-            dateString = `${row[12].v}`
+            dateString = `${row[11].v}`
         }
-        let extraInfo = (row[13] != null) ? `${row[13].v}` : "None Provided"
-        modalBody.innerHTML = `<b>Teacher</b><br>${row[2].v} - Room ${row[4].v}<br>${row[1].v}<br><br><b>Date</b><br>${dateString}<br><br><b>Additional Info</b><br>${extraInfo}`
+        let extraInfo = (row[12] != null) ? `${row[12].v}` : "None Provided"
+        modalBody.innerHTML = `<b>Teacher</b><br>${row[2].v} - ${row[13].v}<br>${row[1].v}<br><br><b>Date</b><br>${dateString}<br><br><b>Additional Info</b><br>${extraInfo}`
 
         instance.open();
     })
@@ -166,7 +166,7 @@ function recurringTutorial(row) {
     let courseName = document.createElement('div')
     let teacher = document.createElement('div')
     courseName.innerHTML = row[3].v;
-    teacher.innerHTML = `<b>${row[2].v} - ${row[4].v}</b>`;
+    teacher.innerHTML = `<b>${row[2].v} - ${row[13].v}</b>`;
     teacher.classList.add('teacher')
     course.appendChild(courseName)
     course.appendChild(teacher)
@@ -174,10 +174,10 @@ function recurringTutorial(row) {
     course.classList.add("course")
             
     let time = document.createElement("div")
-    time.innerHTML = row[7]['v']
+    time.innerHTML = row[6]['v']
     time.classList.add('time')
     let days = document.createElement("div")
-    days.innerHTML = row[6]['v']
+    days.innerHTML = row[5]['v']
 
     d.appendChild(course);
     d.appendChild(days)
@@ -196,13 +196,17 @@ function recurringTutorial(row) {
         
         // recurring modal content
         let repeatString = ``
-        if(row[6] != null) {
-            repeatString = `${row[6].v}<br>${row[7].v}`
-        } else {
-            repeatString = `${row[8].v}`
+        if(row[5] != null) {
+            repeatString = `${row[5].v}<br>`
         }
-        let extraInfo = (row[9] != null) ? `${row[9].v}` : "None Provided"
-        modalBody.innerHTML = `<b>Teacher</b><br>${row[2].v} - Room ${row[4].v}<br>${row[1].v}<br><br><b>Repeats</b><br>${repeatString}<br><br><b>Additional Info</b><br>${extraInfo}`
+        if(row[6] != null) {
+            repeatString += `${row[6].v}`
+        }
+        if(row[5] == null && row[6] == null && row[7] != null) {
+            repeatString = `${row[7].v}`
+        }
+        let extraInfo = (row[8] != null) ? `${row[8].v}` : "None Provided"
+        modalBody.innerHTML = `<b>Teacher</b><br>${row[2].v} - ${row[13].v}<br>${row[1].v}<br><br><b>Repeats</b><br>${repeatString}<br><br><b>Additional Info</b><br>${extraInfo}`
         let instance = M.Modal.getInstance(modal)
 
         instance.open();
