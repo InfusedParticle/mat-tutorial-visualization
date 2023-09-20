@@ -70,11 +70,8 @@ function init() {
             }
         }
         oneTime.sort(function(a, b){
-            console.log(a.date);
-            console.log(b.date);
             return a.date - b.date;
         })
-        console.log(oneTime);
         let oneTimeTutorialContainer = document.getElementById("onetime")
         for(let i = 0; i < oneTime.length; i++) {
             let oneTimeTutorialDiv = oneTime[i];
@@ -167,9 +164,11 @@ function oneTimeTutorial(row) {
     } else {
         d.difficulty = 'Academic';
     }
-    if(row[7] != null) {
-        let timeString = row[7].v;
-    }
+
+    // if(row[6] != null) {
+    //     let timeString = row[6].v;
+
+    // }
     divs.push(d)
 }
 
