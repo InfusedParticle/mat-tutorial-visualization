@@ -35,7 +35,22 @@ function init() {
     let instance = M.FormSelect.getInstance(document.getElementById('times'))
     instance.input.value = "Tutorial Times"
     timeFilter.addEventListener('change', ()=>{
-        // console.log(instance.getSelectedValues());
+        let selected = instance.getSelectedValues();
+        for(let i = 0; i < divs.length; i++) {
+            let tempDiv = divs[i];
+            let display = false;
+            for(let j = 0; j < tempDiv.timeData.length; j++) {
+                if(selected.includes(tempDiv.timeData[j])) {
+                    display = true;
+                    break;
+                }
+            }
+            if(display) {
+                tempDiv.style.display = 'flex';
+            } else {
+                tempDiv.style.display = 'none';
+            }
+        }
         instance.input.value = "Tutorial Times"
     })
     let timeInstance = M.FormSelect.getInstance(document.getElementById('times'))
@@ -97,6 +112,8 @@ function oneTimeTutorial(row) {
     } else {
         d.date = new Date(2030, 0, 1)
     }
+    
+    
     d.className = (past) ? "card-panel grey lighten-1 tutorialslot" : "card-panel blue lighten-2 tutorialslot"
     let course = document.createElement('div')
     let courseName = document.createElement('div')
@@ -165,10 +182,28 @@ function oneTimeTutorial(row) {
         d.difficulty = 'Academic';
     }
 
-    // if(row[6] != null) {
-    //     let timeString = row[6].v;
-
-    // }
+    // add time data
+    // 1899, 11, 30, 7:30
+    if(row[10] != null) {
+        let dateData = row[10].v.slice(5, -1).split(",")
+        for(let i = 0; i < dateData.length; i++) {
+            dateData[i] = parseInt(dateData[i])
+        }
+        // console.log(dateData);
+        let tutorialTime = new Date(dateData[0], dateData[1], dateData[2], dateData[3], dateData[4], dateData[5])
+        let schoolStart = new Date(1899, 11, 30, 7, 30, 0)
+        let schoolEnd = new Date(1899, 11, 30, 14, 30, 0)
+        if(tutorialTime.getTime() < schoolStart.getTime()) {
+            d.timeData = ['Before school']
+        } else if(tutorialTime.getTime() > schoolEnd.getTime()) {
+            d.timeData = ['After school']
+        } else {
+            d.timeData = ['Enrichment']
+        }
+    }
+    else {
+        d.timeData = ['Before school', 'After school', 'Enrichment']
+    }
     divs.push(d)
 }
 
@@ -234,6 +269,15 @@ function recurringTutorial(row) {
     } else {
         d.difficulty = 'Academic';
     }
+
+    // add time data to the div
+    if(row[6] != null) {
+        let timeString = row[6].v.split(", ");
+        d.timeData = timeString;
+    } else {
+        d.timeData = ['Before school', 'After school', 'Enrichment']
+    }
+
     divs.push(d)
 }
 
