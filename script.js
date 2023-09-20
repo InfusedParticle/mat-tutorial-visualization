@@ -5,6 +5,8 @@ const query = encodeURIComponent(qu)
 const url = `${base}&sheet=Form%20Responses%201&tq=${query}`
 const data = []
 let divs = []
+let oneTime = []
+//let recurring = []
 
 document.addEventListener('DOMContentLoaded', init);
 
@@ -67,12 +69,23 @@ function init() {
                 recurringTutorial(row)
             }
         }
-        
+        oneTime.sort(function(a, b){
+            console.log(a.date);
+            console.log(b.date);
+            return a.date - b.date;
+        })
+        console.log(oneTime);
+        let oneTimeTutorialContainer = document.getElementById("onetime")
+        for(let i = 0; i < oneTime.length; i++) {
+            let oneTimeTutorialDiv = oneTime[i];
+            oneTimeTutorialContainer.appendChild(oneTimeTutorialDiv)
+        }
     })
 }
 
 function oneTimeTutorial(row) {
     // check if tutorial has already happened
+    let d = document.createElement('div')
     let past = false;
     if(row[9] != null) {
         let dateData = row[9].v.slice(5, -1).split(",")
@@ -83,9 +96,10 @@ function oneTimeTutorial(row) {
             // console.log('outdated tutorial');
             past = true;
         }
+        d.date = tutorialDate;
+    } else {
+        d.date = new Date(2030, 0, 1)
     }
-
-    let d = document.createElement('div')
     d.className = (past) ? "card-panel grey lighten-1 tutorialslot" : "card-panel blue lighten-2 tutorialslot"
     let course = document.createElement('div')
     let courseName = document.createElement('div')
@@ -119,8 +133,8 @@ function oneTimeTutorial(row) {
     d.appendChild(time);
     d.style.padding = "10px 15px 10px 15px";
     
-    let tutorials = document.getElementById("onetime")
-    tutorials.appendChild(d)
+    oneTime.push(d);
+    
     // one-time modal
     d.addEventListener('click', ()=>{
         let modal = document.getElementById("tutorialmodal")
